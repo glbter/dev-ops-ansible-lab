@@ -1,15 +1,21 @@
 {#
-TODO: reuse your unit from Lab 1
-TODO: Path to jar should use variables {{ app_dir }}/{{ app_file }}
-TODO: Environment variable for PORT should use value from variable {{ app_port }}
+# TODO: reuse your unit from Lab 1
+# TODO: Path to jar should use variables {{ app_dir }}/{{ app_file }}
+# TODO: Environment variable for PORT should use value from variable {{ app_port }}
 #}
+
 [Unit]
-Description=
-Requires=
-After=
+Description=my demo spring java application, which shows a gay rainbow on port 8080
+Requires=network-online.target
+After=network-online.target
 
 [Install]
 WantedBy=multi-user.target
 
 [Service]
-ExecStart=
+ExecStart=java -jar {{ app_dir }}/{{ app_file }}
+User=hlib
+Restart=on-failure
+RestartSec=10s
+Environment=PORT={{ app_port }}
+
