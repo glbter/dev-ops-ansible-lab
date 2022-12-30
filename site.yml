@@ -12,6 +12,8 @@
       apt:
       # TODO: Your code here
         name: "{{ item }}"
+        update_cache: yes
+        cache_valid_time: "{{ aptcachetime }}"
       loop:
        - "{{ packages }}"
 
